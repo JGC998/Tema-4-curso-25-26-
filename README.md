@@ -1,7 +1,15 @@
-# SIMULACRO-2025-11-27
+## 📚 Documentación del Proyecto: BIBLIOTECA
 
-> 27 Noviembre 2025
+Este proyecto implementa la gestión de inventario para una biblioteca, cubriendo las entidades **Autores** y **Libros**, utilizando tanto una base de datos MariaDB/MySQL como una API REST local.
 
-Solución de Simulacro de Prueba del Tema 4 del módulo de Desarrollo Web en Entorno Servidor. 
+### ⚙️ Configuración y Ejecución
 
-**[ENUNCIADO](SIMULACRO-2025-11-27.pdf)**
+
+1.  **Base de Datos (MariaDB):**
+    * **Configuración:** La conexión está definida en `src/lib/db.js`.
+    * **Credenciales:** `mysql://examen:examen@127.0.0.1:3306/biblioteca`
+    * **Estructura:** Creada mediante `src/data/db.sql`.
+
+2.  **API REST Local:**
+    * **Datos:** Definidos en `src/data/api.json`.
+    * **Puerto:** `3001`.
