@@ -1,40 +1,37 @@
-DROP DATABASE IF EXISTS escuela;
+DROP DATABASE IF EXISTS biblioteca;
+CREATE DATABASE biblioteca;
+USE biblioteca;
 
-CREATE DATABASE escuela;
-USE escuela;
 
-
-CREATE TABLE alumnos (
+CREATE TABLE autores (
     id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR(200) NOT NULL,
-    localidad VARCHAR(200),
-    fecha_nacimiento DATE,
+    lugar_de_nacimiento VARCHAR(200),
+    premio_nobel BOOLEAN DEFAULT FALSE,
     createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 
--- ALTER TABLE alumnos ADD COLUMN imagen VARCHAR(200) AFTER descripcion;
-
-INSERT INTO alumnos (nombre, localidad, fecha_nacimiento) 
+INSERT INTO autores (nombre, lugar_de_nacimiento, premio_nobel) 
 VALUES 
-  ('José', 'Montilla', '2000-01-01'),
-  ('Juan', 'Lucena', '2000-01-01'),
-  ('Ana', 'Lucena', '2000-01-01');
+  ('Gabriel García Márquez', 'Aracataca', TRUE),
+  ('Isabel Allende', 'Lima', FALSE),
+  ('Jorge Luis Borges', 'Buenos Aires', FALSE);
 
 
-  CREATE TABLE profesores (
+CREATE TABLE libros (
     id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-    nombre VARCHAR(200) NOT NULL,
-    especialidad VARCHAR(200),
-    estado_civil VARCHAR(200),
+    titulo VARCHAR(200) NOT NULL,
+    editorial VARCHAR(200),
+    fecha_de_publicacion DATE,
     createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 
--- ALTER TABLE profesores ADD COLUMN imagen VARCHAR(200) AFTER descripcion;
 
-INSERT INTO profesores (nombre, especialidad, estado_civil) 
+INSERT INTO libros (titulo, editorial, fecha_de_publicacion) 
 VALUES 
-  ('José Profe', 'Matemáticas', 'Casado'),
-  ('Juan Profe', 'Lengua', 'Casado'),
-  ('Ana Profe', 'Inglés', 'Casado');
+  ('Cien años de soledad', 'Sudamericana', '1967-05-30'),
+  ('La casa de los espíritus', 'Plaza & Janés', '1982-01-01'),
+  ('Ficciones', 'Sur', '1944-01-01');
+
