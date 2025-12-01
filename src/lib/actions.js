@@ -8,166 +8,209 @@ import { deleteCookie, setCookie } from "@/lib/cookies";
 
 // BASE DE DATOS
 
+    // AUTORES
 
 export async function nuevoAutorDB(formData) {
     const nombre = formData.get('nombre')
     const lugar_de_nacimiento = formData.get('lugar_de_nacimiento')
-    const premio_nobel = formData.get('premio_nobel')
+    const premio_nobel_str = formData.get('premio_nobel')
+
+    // Convertir a booleano
+    const premio_nobel = premio_nobel_str === 'on' ? true : false;
+    
+    // Retardo de 2 segundos
+    await new Promise(resolve => setTimeout(resolve, 2000))
 
     const sql = 'insert into autores (nombre, lugar_de_nacimiento, premio_nobel) values (?, ?, ?)'
-    const values = [nombre, localidad, fecha_nacimiento];
+    const values = [nombre, lugar_de_nacimiento, premio_nobel];
 
     const [result, fields] = await db.query(sql, values)
-    revalidatePath('/alumnos-db')
+    revalidatePath('/autores-db')
 }
 
 
-export async function editarAlumnoDB(formData) {
+export async function editarAutorDB(formData) {
     const id = formData.get('id')
     const nombre = formData.get('nombre')
-    const localidad = formData.get('localidad')
-    const fecha_nacimiento = formData.get('fecha_nacimiento')
+    const lugar_de_nacimiento = formData.get('lugar_de_nacimiento')
+    const premio_nobel_str = formData.get('premio_nobel')
 
-    const sql = 'update alumnos set nombre=?, localidad=?, fecha_nacimiento=? where id=?'
-    const values = [nombre, localidad, fecha_nacimiento, id];
+    // Convertir a booleano
+    const premio_nobel = premio_nobel_str === 'on' ? true : false;
+
+    // Retardo de 2 segundos
+    await new Promise(resolve => setTimeout(resolve, 2000))
+
+    const sql = 'update autores set nombre=?, lugar_de_nacimiento=?, premio_nobel=? where id=?'
+    const values = [nombre, lugar_de_nacimiento, premio_nobel, id];
 
     const [result, fields] = await db.query(sql, values)
-    revalidatePath('/alumnos-db')
+    revalidatePath('/autores-db')
 }
 
 
-
-
-export async function eliminarAlumnoDB(formData) {
+export async function eliminarAutorDB(formData) {
     const id = formData.get('id')
 
-    const sql = 'delete from alumnos where id = ?'
+    const sql = 'delete from autores where id = ?'
     const values = [id]
     await db.query(sql, values);
 
-    revalidatePath('/alumnos-db')
+    revalidatePath('/autores-db')
 }
 
 
+    // LIBROS
 
-export async function nuevoProfesorDB(formData) {
-    const nombre = formData.get('nombre')
-    const especialidad = formData.get('especialidad')
-    const estado_civil = formData.get('estado_civil')
+export async function nuevoLibroDB(formData) {
+    const titulo = formData.get('titulo')
+    const editorial = formData.get('editorial')
+    const fecha_de_publicacion = formData.get('fecha_de_publicacion')
 
-    const sql = 'insert into profesores (nombre, especialidad, estado_civil) values (?, ?, ?)'
-    const values = [nombre, especialidad, estado_civil];
+    // Retardo de 2 segundos
+    await new Promise(resolve => setTimeout(resolve, 2000))
+
+    const sql = 'insert into libros (titulo, editorial, fecha_de_publicacion) values (?, ?, ?)'
+    const values = [titulo, editorial, fecha_de_publicacion];
 
     const [result, fields] = await db.query(sql, values)
-    revalidatePath('/profesores-db')
+    revalidatePath('/libros-db')
 }
 
 
-export async function editarProfesorDB(formData) {
+export async function editarLibroDB(formData) {
     const id = formData.get('id')
-    const nombre = formData.get('nombre')
-    const especialidad = formData.get('especialidad')
-    const estado_civil = formData.get('estado_civil')
+    const titulo = formData.get('titulo')
+    const editorial = formData.get('editorial')
+    const fecha_de_publicacion = formData.get('fecha_de_publicacion')
 
-    const sql = 'update profesores set nombre=?, especialidad=?, estado_civil=? where id=?'
-    const values = [nombre, especialidad, estado_civil, id];
+    // Retardo de 2 segundos
+    await new Promise(resolve => setTimeout(resolve, 2000))
+
+    const sql = 'update libros set titulo=?, editorial=?, fecha_de_publicacion=? where id=?'
+    const values = [titulo, editorial, fecha_de_publicacion, id];
 
     const [result, fields] = await db.query(sql, values)
-    revalidatePath('/profesores-db')
+    revalidatePath('/libros-db')
 }
 
 
-
-
-export async function eliminarProfesorDB(formData) {
+export async function eliminarLibroDB(formData) {
     const id = formData.get('id')
 
-    const sql = 'delete from profesores where id = ?'
+    const sql = 'delete from libros where id = ?'
     const values = [id]
     await db.query(sql, values);
 
-    revalidatePath('/profesores-db')
+    revalidatePath('/libros-db')
 }
-
 
 
 
 
 // API
 
-export async function nuevoAlumnoAPI(formData) {
-    const [nombre, localidad, fecha_nacimiento] = formData.values()
+    // AUTORES
 
-    const response = await fetch('http://localhost:3001/alumnos', {
+export async function nuevoAutorAPI(formData) {
+    const [nombre, lugar_de_nacimiento] = formData.values()
+    const premio_nobel_str = formData.get('premio_nobel')
+    const premio_nobel = premio_nobel_str === 'on' ? true : false;
+
+    // Retardo de 2 segundos
+    await new Promise(resolve => setTimeout(resolve, 2000))
+
+    const response = await fetch('http://localhost:3001/autores', {
         method: 'POST',
-        body: JSON.stringify({ nombre, localidad, fecha_nacimiento, createdAt: new Date().toISOString() })
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ nombre, lugar_de_nacimiento, premio_nobel, createdAt: new Date().toISOString() })
     })
     const data = await response.json()
 
-    revalidatePath('/alumnos-api')
+    revalidatePath('/autores-api')
 }
 
 
-export async function editarAlumnoAPI(formData) {
-    const [id, nombre, localidad, fecha_nacimiento] = formData.values()
+export async function editarAutorAPI(formData) {
+    const [id, nombre, lugar_de_nacimiento] = formData.values()
+    const premio_nobel_str = formData.get('premio_nobel')
+    const premio_nobel = premio_nobel_str === 'on' ? true : false;
+    
+    // Retardo de 2 segundos
+    await new Promise(resolve => setTimeout(resolve, 2000))
 
-    const response = await fetch('http://localhost:3001/alumnos/' + id, {
+    const response = await fetch('http://localhost:3001/autores/' + id, {
         method: 'PUT',
-        body: JSON.stringify({ nombre, localidad, fecha_nacimiento, createdAt: new Date().toISOString() })
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ id, nombre, lugar_de_nacimiento, premio_nobel, createdAt: new Date().toISOString() })
     })
     const data = await response.json()
-    revalidatePath('/alumnos-api')
+    revalidatePath('/autores-api')
 }
 
 
-export async function eliminarAlumnoAPI(formData) {
+export async function eliminarAutorAPI(formData) {
     const id = formData.get('id')
 
-    await fetch('http://localhost:3001/alumnos/' + id, { method: 'DELETE' })
+    await fetch('http://localhost:3001/autores/' + id, { method: 'DELETE' })
 
-    revalidatePath('/alumnos-api')
+    revalidatePath('/autores-api')
 }
 
 
-export async function nuevoProfesorAPI(formData) {
-    const [nombre, especialidad, estado_civil] = formData.values()
+    // LIBROS
 
-    const response = await fetch('http://localhost:3001/profesores', {
+export async function nuevoLibroAPI(formData) {
+    const [titulo, editorial, fecha_de_publicacion] = formData.values()
+
+    // Retardo de 2 segundos
+    await new Promise(resolve => setTimeout(resolve, 2000))
+
+    const response = await fetch('http://localhost:3001/libros', {
         method: 'POST',
-        body: JSON.stringify({ nombre, especialidad, estado_civil, createdAt: new Date().toISOString() })
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ titulo, editorial, fecha_de_publicacion, createdAt: new Date().toISOString() })
     })
     const data = await response.json()
 
-    revalidatePath('/profesores-api')
+    revalidatePath('/libros-api')
 }
 
 
-export async function editarProfesorAPI(formData) {
-    const [id, nombre, especialidad, estado_civil] = formData.values()
+export async function editarLibroAPI(formData) {
+    const [id, titulo, editorial, fecha_de_publicacion] = formData.values()
 
-    const response = await fetch('http://localhost:3001/profesores/' + id, {
+    // Retardo de 2 segundos
+    await new Promise(resolve => setTimeout(resolve, 2000))
+
+    const response = await fetch('http://localhost:3001/libros/' + id, {
         method: 'PUT',
-        body: JSON.stringify({ nombre, especialidad, estado_civil, createdAt: new Date().toISOString() })
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ id, titulo, editorial, fecha_de_publicacion, createdAt: new Date().toISOString() })
     })
     const data = await response.json()
-    revalidatePath('/profesores-api')
+    revalidatePath('/libros-api')
 }
 
 
-export async function eliminarProfesorAPI(formData) {
+export async function eliminarLibroAPI(formData) {
     const id = formData.get('id')
 
-    await fetch('http://localhost:3001/profesores/' + id, { method: 'DELETE' })
+    await fetch('http://localhost:3001/libros/' + id, { method: 'DELETE' })
 
-    revalidatePath('/profesores-api')
+    revalidatePath('/libros-api')
 }
 
 
-
-
-// --------------------------- AUTENTICACIÓN -----------------
-
-
+// AUTENTICACIÓN
 
 const usuarios = [
     { nombre: 'ana', key: 'ana' },
@@ -184,7 +227,6 @@ export async function login(formData) {
     const callbackUrl = formData.get('callbackUrl') || LOGIN_URL
 
     // Comprobar si credenciales son válidas
-    // const authenticated = true  // suponemos que son válidas
     const encontrado = usuarios.find(usuario => name == usuario.nombre && key == usuario.key)
 
     if (!encontrado) return
@@ -201,13 +243,7 @@ export async function logout() {
     // Eliminamos cookie de sesión
     await deleteCookie('session')
 
-    // redirect("/");   // No recarga si ya estamos en esta página
-
-    // Hack to reload page! https://github.com/vercel/next.js/discussions/49345#discussioncomment-6120148
+    // Hack to reload page! :D
     redirect('/?' + Math.random())
 
 }
-
-
-
-
