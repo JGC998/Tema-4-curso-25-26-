@@ -6,50 +6,51 @@ import { db } from '@/lib/db'
 
 // BASE DE DATOS
 
-export async function obtenerAlumnosDB(query) {
-    const sql = 'select * from `alumnos` where nombre like ?';
-    const values = ["%" + query + "%"]
-    // const values = ['%teclado%', "%a%"]
-    const [alumnos] = await db.query(sql, values);
+    // AUTORES
 
-    // Introducimos un retardo artificial
+export async function obtenerAutoresDB(query) {
+    const sql = 'select * from `autores` where nombre like ?';
+    const values = ["%" + query + "%"]
+    const [autores] = await db.query(sql, values);
+
+    // Introducimos un retardo artificial (2 segundos)
     await new Promise(resolve => setTimeout(resolve, 2000))
 
-    return alumnos
+    return autores
 }
 
 
-export async function obtenerAlumnoDB(id) {
-    const sql = 'select * from alumnos where id = ?';
+export async function obtenerAutorDB(id) {
+    const sql = 'select * from autores where id = ?';
     const values = [id]
     const [rows] = await db.query(sql, values);
 
-    // Introducimos un retardo artificial
+    // Introducimos un retardo artificial (2 segundos)
     await new Promise(resolve => setTimeout(resolve, 2000))
 
     return rows[0]
 }
 
+    // LIBROS
 
-export async function obtenerProfesoresDB(query) {
-    const sql = 'select * from `profesores` where nombre like ?';
+export async function obtenerLibrosDB(query) {
+    const sql = 'select * from `libros` where titulo like ?'; // Búsqueda por título
     const values = ["%" + query + "%"]
-    // const values = ['%teclado%', "%a%"]
-    const [profesores] = await db.query(sql, values);
+    const [libros] = await db.query(sql, values);
 
-    // Introducimos un retardo artificial
+    // Introducimos un retardo artificial (2 segundos)
     await new Promise(resolve => setTimeout(resolve, 2000))
 
-    return profesores
+    return libros
 }
 
 
-export async function obtenerProfesorDB(id) {
-    const sql = 'select * from profesores where id = ?';
+export async function obtenerLibroDB(id) {
+    const sql = 'select * from libros where id = ?';
     const values = [id]
     const [rows] = await db.query(sql, values);
 
-    // Introducimos un retardo artificial
+    // Introducimos un retardo artificial (2 segundos)
     await new Promise(resolve => setTimeout(resolve, 2000))
 
     return rows[0]
@@ -61,53 +62,51 @@ export async function obtenerProfesorDB(id) {
 
 // API
 
+    // AUTORES
 
-export async function obtenerAlumnosAPI(query) {
-    const response = await fetch('http://localhost:3001/alumnos')
-    const alumnos = await response.json()
+export async function obtenerAutoresAPI(query) {
+    const response = await fetch('http://localhost:3001/autores')
+    const autores = await response.json()
 
-    // Introducimos un retardo artificial
-    // await new Promise(resolve => setTimeout(resolve, 2000))
-
-    return alumnos.filter(a => a.nombre.toLowerCase().includes(query))
+    // No se requiere retardo artificial en la consulta de listado por API
+    
+    // Filtramos manualmente por query
+    return autores.filter(a => a.nombre.toLowerCase().includes(query.toLowerCase()))
 }
 
 
-
-export async function obtenerAlumnoAPI(id) {
-    const response = await fetch('http://localhost:3001/alumnos/' + id)
+export async function obtenerAutorAPI(id) {
+    const response = await fetch('http://localhost:3001/autores/' + id)
     if (!response.ok) return null
-    const alumno = await response.json()
+    const autor = await response.json()
 
-    // Introducimos un retardo artificial
+    // Introducimos un retardo artificial (2 segundos) para simular carga
     await new Promise(resolve => setTimeout(resolve, 2000))
 
-    return alumno
+    return autor
 }
 
 
+    // LIBROS
 
-export async function obtenerProfesoresAPI(query) {
-    const response = await fetch('http://localhost:3001/profesores')
-    const profesores = await response.json()
+export async function obtenerLibrosAPI(query) {
+    const response = await fetch('http://localhost:3001/libros')
+    const libros = await response.json()
 
-    // Introducimos un retardo artificial
-    // await new Promise(resolve => setTimeout(resolve, 2000))
+    // No se requiere retardo artificial en la consulta de listado por API
 
-    return profesores.filter(a => a.nombre.toLowerCase().includes(query))
+    // Filtramos manualmente por query
+    return libros.filter(l => l.titulo.toLowerCase().includes(query.toLowerCase()))
 }
 
 
-
-export async function obtenerProfesorAPI(id) {
-    const response = await fetch('http://localhost:3001/profesores/' + id)
+export async function obtenerLibroAPI(id) {
+    const response = await fetch('http://localhost:3001/libros/' + id)
     if (!response.ok) return null
-    const profesor = await response.json()
+    const libro = await response.json()
 
-    // Introducimos un retardo artificial
+    // Introducimos un retardo artificial (2 segundos) para simular carga
     await new Promise(resolve => setTimeout(resolve, 2000))
 
-    return profesor
+    return libro
 }
-
-

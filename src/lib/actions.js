@@ -9,12 +9,12 @@ import { deleteCookie, setCookie } from "@/lib/cookies";
 // BASE DE DATOS
 
 
-export async function nuevoAlumnoDB(formData) {
+export async function nuevoAutorDB(formData) {
     const nombre = formData.get('nombre')
-    const localidad = formData.get('localidad')
-    const fecha_nacimiento = formData.get('fecha_nacimiento')
+    const lugar_de_nacimiento = formData.get('lugar_de_nacimiento')
+    const premio_nobel = formData.get('premio_nobel')
 
-    const sql = 'insert into alumnos (nombre, localidad, fecha_nacimiento) values (?, ?, ?)'
+    const sql = 'insert into autores (nombre, lugar_de_nacimiento, premio_nobel) values (?, ?, ?)'
     const values = [nombre, localidad, fecha_nacimiento];
 
     const [result, fields] = await db.query(sql, values)
@@ -170,8 +170,8 @@ export async function eliminarProfesorAPI(formData) {
 
 
 const usuarios = [
-    { nombre: 'usuario1', key: 'usuario1' },
-    { nombre: 'usuario2', key: 'usuario2' },
+    { nombre: 'ana', key: 'ana' },
+    { nombre: 'eva', key: 'eva' },
 ]
 
 export async function login(formData) {

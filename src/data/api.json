@@ -1,47 +1,47 @@
 {
-  "alumnos": [
+  "autores": [
     {
       "id": "1",
-      "nombre": "José",
-      "localidad": "Montilla",
-      "fecha_nacimiento": "2000-01-01",
+      "nombre": "Gabriel García Márquez",
+      "lugar_de_nacimiento": "Aracataca",
+      "premio_nobel": true,
       "createdAt": "2024-10-23T10:56:35.101Z"
     },
     {
       "id": "2",
-      "nombre": "Juan",
-      "localidad": "Lucena",
-      "fecha_nacimiento": "2000-01-01",
+      "nombre": "Isabel Allende",
+      "lugar_de_nacimiento": "Lima",
+      "premio_nobel": false,
       "createdAt": "2025-11-06T12:22:34.096Z"
     },
     {
       "id": "3",
-      "nombre": "Ana",
-      "localidad": "Aguilar",
-      "fecha_nacimiento": "2000-01-01",
+      "nombre": "Jorge Luis Borges",
+      "lugar_de_nacimiento": "Buenos Aires",
+      "premio_nobel": false,
       "createdAt": "2025-11-06T12:50:07.914Z"
     }
   ],
-  "profesores": [
+  "libros": [
     {
       "id": "1",
-      "nombre": "José Profe",
-      "especialidad": "Matemáticas",
-      "estado_civil": "Casado",
+      "titulo": "Cien años de soledad",
+      "editorial": "Sudamericana",
+      "fecha_de_publicacion": "1967-05-30",
       "createdAt": "2024-10-23T10:56:35.101Z"
     },
     {
-      "nombre": "Juan Profe",
-      "especialidad": "Matemáticas",
-      "estado_civil": "Soltero",
-      "createdAt": "2025-11-06T12:22:34.096Z",
-      "id": "2"
+      "titulo": "La casa de los espíritus",
+      "editorial": "Plaza & Janés",
+      "fecha_de_publicacion": "1982-01-01",
+      "id": "2",
+      "createdAt": "2025-11-06T12:22:34.096Z"
     },
     {
       "id": "3",
-      "nombre": "Ana Profe",
-      "especialidad": "Lengua",
-      "estado_civil": "Casado",
+      "titulo": "Ficciones",
+      "editorial": "Sur",
+      "fecha_de_publicacion": "1944-01-01",
       "createdAt": "2025-11-06T12:50:07.914Z"
     }
   ]
