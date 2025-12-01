@@ -30,18 +30,18 @@ function AutorEditarDB({ autor }) {
                         className='p-1 border border-slate-200 focus:outline-blue-300 text-lg'
                     />
 
-                    <label htmlFor='estado_civil'>Estado civil</label>
+                    <label htmlFor='premio_nobel'>Premio Nobel:</label>
                     <input
-                        required
-                        id='estado_civil'
-                        name='estado_civil'
-                        defaultValue={profesor.estado_civil}
+                        type='checkbox'
+                        id='premio_nobel'
+                        name='premio_nobel'
+                        defaultChecked={autor.premio_nobel}
                         className='p-1 border border-slate-200 focus:outline-blue-300 text-lg'
                     />
 
                     <div className='col-span-2 grid gap-2'>
-                        <button formAction={editarProfesorDB} className='bg-green-600 text-white px-4 py-2 rounded-xl'>
-                            Actualizar profesor
+                        <button formAction={editarAutorDB} className='bg-green-600 text-white px-4 py-2 rounded-xl'>
+                            Actualizar autor
                         </button>
                     </div>
                 </form>
@@ -53,4 +53,4 @@ function AutorEditarDB({ autor }) {
     );
 }
 
-export default ProfesorEditarDB;
+export default AutorEditarDB;

@@ -8,8 +8,7 @@ export function Login({ action, callbackUrl }) {
             <input type='hidden' name='callbackUrl' defaultValue={callbackUrl} />
             <input name="name" placeholder="Nombre"
                 className="p-2 rounded-md ring-1 ring-slate-300 hover:ring-blue-300 focus:outline-none" />
-            <input name="email" placeholder="Email"
-                className="p-2 rounded-md ring-1 ring-slate-300 hover:ring-blue-300 focus:outline-none" />
+            
             <input name="key" placeholder="Contraseña" type='password'
                 className="p-2 rounded-md ring-1 ring-slate-300 hover:ring-blue-300 focus:outline-none" />
             <button type="submit"

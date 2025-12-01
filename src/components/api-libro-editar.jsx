@@ -1,48 +1,48 @@
 'use client'
-import { editarAlumnoDB } from "@/lib/actions";
+import { editarLibroAPI } from "@/lib/actions";
 import { useState } from "react";
 
 
-function AlumnoEditarDB({ alumno }) {
+function LibroEditarAPI({ libro }) {
     const [visible, setVisible] = useState(false)
 
     return (
         <>
             {visible &&
                 <form className='my-10 grid grid-cols-[150px_auto] gap-4'>
-                    <input type="hidden" name='id' defaultValue={alumno.id} />
+                    <input type="hidden" name='id' defaultValue={libro.id} />
 
-                    <label htmlFor='nombre'>Nombre</label>
+                    <label htmlFor='titulo'>Título</label>
                     <input
                         required
-                        id='nombre'
-                        name='nombre'
-                        defaultValue={alumno.nombre}
+                        id='titulo'
+                        name='titulo'
+                        defaultValue={libro.titulo}
                         className='p-1 border border-slate-200 focus:outline-blue-300 text-lg'
                     />
 
-                    <label htmlFor='localidad'>Localidad:</label>
+                    <label htmlFor='editorial'>Editorial:</label>
                     <input
                         required
-                        id='localidad'
-                        name='localidad'
-                        defaultValue={alumno.localidad}
+                        id='editorial'
+                        name='editorial'
+                        defaultValue={libro.editorial}
                         className='p-1 border border-slate-200 focus:outline-blue-300 text-lg'
                     />
 
-                    <label htmlFor='fecha_nacimiento'>Fecha de nacimiento</label>
+                    <label htmlFor='fecha_de_publicacion'>Fecha de publicación</label>
                     <input
                         required
-                        id='fecha_nacimiento'
-                        name='fecha_nacimiento'
+                        id='fecha_de_publicacion'
+                        name='fecha_de_publicacion'
                         type='date'
-                        defaultValue={alumno.fecha_nacimiento}
+                        defaultValue={libro.fecha_de_publicacion}
                         className='p-1 border border-slate-200 focus:outline-blue-300 text-lg'
                     />
 
                     <div className='col-span-2 grid gap-2'>
-                        <button formAction={editarAlumnoDB} className='bg-green-600 text-white px-4 py-2 rounded-xl'>
-                            Actualizar alumno
+                        <button formAction={editarLibroAPI} className='bg-green-600 text-white px-4 py-2 rounded-xl'>
+                            Actualizar libro
                         </button>
                     </div>
                 </form>
@@ -54,4 +54,4 @@ function AlumnoEditarDB({ alumno }) {
     );
 }
 
-export default AlumnoEditarDB;
+export default LibroEditarAPI;

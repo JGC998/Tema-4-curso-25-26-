@@ -2,11 +2,10 @@ import { Suspense } from "react";
 import Link from "next/link";
 
 import Fallback from "@/components/fallback";
-import Profesores from "@/components/api-profesores";
-import ProfesorNuevoAPI from "@/components/api-autor-nuevo";
+import Autores from "@/components/api-autores";
+import AutorNuevo from "@/components/api-autor-nuevo";
 
-
-async function PaginaProfesores({ searchParams }) {
+async function AutoresPage({ searchParams }) {
     let { query } = await searchParams
     query ??= ''
 
@@ -15,17 +14,16 @@ async function PaginaProfesores({ searchParams }) {
             <Link href="/" className="fixed text-4xl p-2 bg-orange-300 rounded-full">🏠</Link>
 
             <h1 className='py-10 text-3xl text-blue-500 text-center border-b-4 border-b-blue-500'>
-                API REST
+                AUTORES (API REST)
             </h1>
 
-            <ProfesorNuevoAPI />
-
+            <AutorNuevo />
 
             <Suspense fallback={<Fallback>Obteniendo datos ... </Fallback>}>
-                <Profesores query={query} />
+                <Autores query={query} />
             </Suspense>
         </section>
     );
 }
 
-export default PaginaProfesores;
+export default AutoresPage;
