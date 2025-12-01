@@ -1,32 +1,32 @@
 'use client'
-import { editarProfesorDB } from "@/lib/actions";
+import { editarAutorDB } from "@/lib/actions";
 import { useState } from "react";
 
 
-function ProfesorEditarDB({ profesor }) {
+function AutorEditarDB({ autor }) {
     const [visible, setVisible] = useState(false)
 
     return (
         <>
             {visible &&
                 <form className='my-10 grid grid-cols-[150px_auto] gap-4'>
-                    <input type="hidden" name='id' defaultValue={profesor.id} />
+                    <input type="hidden" name='id' defaultValue={autor.id} />
 
                     <label htmlFor='nombre'>Nombre</label>
                     <input
                         required
                         id='nombre'
                         name='nombre'
-                        defaultValue={profesor.nombre}
+                        defaultValue={autor.nombre}
                         className='p-1 border border-slate-200 focus:outline-blue-300 text-lg'
                     />
 
-                    <label htmlFor='especialidad'>Especialidad:</label>
+                    <label htmlFor='lugar_de_nacimiento'>Lugar de nacimiento:</label>
                     <input
                         required
-                        id='especialidad'
-                        name='especialidad'
-                        defaultValue={profesor.especialidad}
+                        id='lugar_de_nacimiento'
+                        name='lugar_de_nacimiento'
+                        defaultValue={autor.lugar_de_nacimiento}
                         className='p-1 border border-slate-200 focus:outline-blue-300 text-lg'
                     />
 

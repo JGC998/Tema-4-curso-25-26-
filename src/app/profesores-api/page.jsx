@@ -3,7 +3,7 @@ import Link from "next/link";
 
 import Fallback from "@/components/fallback";
 import Profesores from "@/components/api-profesores";
-import ProfesorNuevoAPI from "@/components/api-profesor-nuevo";
+import ProfesorNuevoAPI from "@/components/api-autor-nuevo";
 
 
 async function PaginaProfesores({ searchParams }) {

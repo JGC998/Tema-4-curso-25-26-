@@ -3,7 +3,7 @@ import Link from "next/link";
 
 import Fallback from "@/components/fallback";
 import Alumnos from "@/components/api-alumnos";
-import AlumnoNuevoAPI from "@/components/api-alumno-nuevo";
+import AlumnoNuevoAPI from "@/components/api-libro-nuevo";
 
 
 async function AlumnosPage({ searchParams }) {

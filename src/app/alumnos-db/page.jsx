@@ -3,7 +3,7 @@ import Link from "next/link";
 
 import Fallback from "@/components/fallback";
 import Alumnos from "@/components/db-alumnos";
-import AlumnoNuevo from "@/components/db-alumno-nuevo";
+import AlumnoNuevo from "@/components/db-libro-nuevo";
 
 
 
